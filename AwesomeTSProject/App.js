@@ -1,13 +1,8 @@
 import React from 'react';
-import { View } from 'react-native';
-import Main from './src/views/main/main';
+import { NavigationComponent } from './src/modules/navigation/mainNavigation';
 
 const App = () => {
-  return (
-    <View >
-      <Main />
-    </View>
-  );
+  return <NavigationComponent />;
 };
 
 export default App;
