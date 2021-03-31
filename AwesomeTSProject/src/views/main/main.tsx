@@ -3,11 +3,10 @@ import { View, NativeModules } from 'react-native';
 import Button from '../../components/button/button';
 import { styles } from './styles';
 
-// const { Example, SyncExample, ExampleWithCallback, ExampleMethodQueue, ExampleSwift } = NativeModules;
 const { Example, SyncExample, ExampleWithCallback, ExampleMethodQueue, ExampleSwift } = NativeModules;
 
 const Main = () => {
-
+    let error = new Error('some error');
     const onPressExample = async () => {
         await Example.exampleMethod('example string');
     };
@@ -37,9 +36,14 @@ const Main = () => {
         ExampleSwift.increment();
     };
 
+    function getLineNumber() {
+        var stack = new Error().stack
+        console.log(stack);
+    }
+
     return (
         <View style={styles.container}>
-            <Button {...{ title: 'Simple Native Module', onPress: onPressExample }} />
+            <Button {...{ title: 'Simple Native Module', onPress: getLineNumber }} />
             <Button {...{ title: 'Synchronous Native Module', onPress: onPressSyncExample }} />
             <Button {...{ title: 'Native Module with callback', onPress: onPressExampleWithCallback }} />
             <Button {...{ title: 'Native Module with methods queue', onPress: onPressExampleWithMethodsQueue }} />
